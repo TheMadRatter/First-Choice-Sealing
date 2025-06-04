@@ -129,7 +129,9 @@
 
         let costFromCracks=document.getElementById('cracks').value*3;
 
-        alert('Estimated Quote: '+costPerSquareFoot*document.getElementById('sqft').value+costFromCracks);
+        alert('Estimated Quote: $'+costPerSquareFoot*document.getElementById('sqft').value+costFromCracks);
+        alert(costPerSquareFoot)
+        alert(costFromCracks)
         
         return costPerSquareFoot*document.getElementById('sqft').value+costFromCracks;
         
