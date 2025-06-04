@@ -28,42 +28,44 @@
     .error {
       color: red;
       font-size: 0.85em;
+      display: none;
     }
-    #map {
+    #map iframe {
       width: 512px;
       height: 512px;
-      background-color: #ddd;
+      border: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <form>
+    <form id="quoteForm">
       <div>
         <label for="fname">First name *</label><br>
-        <input id="fname" type="text" placeholder="Enter your first name" required>
-        <div class="error">Enter a first name.</div>
+        <input id="fname" type="text" placeholder="Enter your first name">
+        <div class="error" id="fname-error">Enter a first name.</div>
       </div>
 
       <div>
         <label for="email">Email *</label><br>
-        <input id="email" type="email" placeholder="Enter your email" required>
+        <input id="email" type="email" placeholder="Enter your email">
+        <div class="error" id="email-error">Enter a valid email.</div>
       </div>
 
       <div>
         <label for="dropdown">Dropdown *</label><br>
-        <select id="dropdown" required>
+        <select id="dropdown">
           <option value="">Choose an option</option>
           <option value="option1">Option 1</option>
           <option value="option2">Option 2</option>
         </select>
-        <div class="error">Choose an option.</div>
+        <div class="error" id="dropdown-error">Choose an option.</div>
       </div>
 
       <div>
         <label for="sqft">Square Footage *</label><br>
-        <input id="sqft" type="number" placeholder="Example: 1,000 sqft" required>
-        <div class="error">Enter a number.</div>
+        <input id="sqft" type="number" placeholder="Example: 1,000 sqft">
+        <div class="error" id="sqft-error">Enter a number.</div>
       </div>
 
       <div>
@@ -73,24 +75,55 @@
 
       <div>
         <label for="address">Address *</label><br>
-        <input id="address" type="text" placeholder="Enter your address or use map to..." required>
+        <input id="address" type="text" placeholder="Enter your address or use map to...">
+        <div class="error" id="address-error">Enter an address.</div>
       </div>
 
       <button type="submit">Get Quote</button>
     </form>
 
     <div id="map">
-      <!-- Placeholder map; replace with Google Maps iframe or JS API if needed -->
       <iframe
-        width="512"
-        height="512"
-        style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=New+York"
         loading="lazy"
         allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=New+York">
+        referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
   </div>
+
+  <script>
+    document.getElementById('quoteForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // prevent form submission
+
+      let isValid = true;
+
+      const fields = [
+        { id: 'fname', error: 'fname-error' },
+        { id: 'email', error: 'email-error' },
+        { id: 'dropdown', error: 'dropdown-error' },
+        { id: 'sqft', error: 'sqft-error' },
+        { id: 'address', error: 'address-error' }
+      ];
+
+      fields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const error = document.getElementById(field.error);
+
+        if (!input.value.trim()) {
+          error.style.display = 'block';
+          isValid = false;
+        } else {
+          error.style.display = 'none';
+        }
+      });
+
+      if (isValid) {
+        alert('Form is valid. Submitting...');
+        // You can now submit via AJAX or allow normal form submission
+        // e.target.submit(); ← Uncomment if using real form action
+      }
+    });
+  </script>
 </body>
 </html>
