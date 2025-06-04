@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quote Form</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+    form {
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, select, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    label {
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-size: 0.85em;
+    }
+    #map {
+      width: 512px;
+      height: 512px;
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form>
+      <div>
+        <label for="fname">First name *</label><br>
+        <input id="fname" type="text" placeholder="Enter your first name" required>
+        <div class="error">Enter a first name.</div>
+      </div>
+
+      <div>
+        <label for="email">Email *</label><br>
+        <input id="email" type="email" placeholder="Enter your email" required>
+      </div>
+
+      <div>
+        <label for="dropdown">Dropdown *</label><br>
+        <select id="dropdown" required>
+          <option value="">Choose an option</option>
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+        </select>
+        <div class="error">Choose an option.</div>
+      </div>
+
+      <div>
+        <label for="sqft">Square Footage *</label><br>
+        <input id="sqft" type="number" placeholder="Example: 1,000 sqft" required>
+        <div class="error">Enter a number.</div>
+      </div>
+
+      <div>
+        <label for="cracks">Linear Feet for Cracks</label><br>
+        <input id="cracks" type="text" placeholder='100 ft of 1/8" cracks etc.'>
+      </div>
+
+      <div>
+        <label for="address">Address *</label><br>
+        <input id="address" type="text" placeholder="Enter your address or use map to..." required>
+      </div>
+
+      <button type="submit">Get Quote</button>
+    </form>
+
+    <div id="map">
+      <!-- Placeholder map; replace with Google Maps iframe or JS API if needed -->
+      <iframe
+        width="512"
+        height="512"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=New+York">
+      </iframe>
+    </div>
+  </div>
+</body>
+</html>
