@@ -122,7 +122,6 @@
       });
 
       if (isValid) {
-        alert('Form is valid. Creating Quote.');
 
         let costPerSquareFoot=0.15;
         if(document.getElementById('dropdown').value==3){
@@ -133,7 +132,7 @@
 
         
         
-        document.getElementById('output').innerHTML="Estimated Cost: $"+parseFloat(costPerSquareFoot)*parseFloat(document.getElementById('sqft').value)+parseFloat(costFromCracks);
+        document.getElementById('output').innerHTML="Estimated Cost: $"+(parseFloat(costPerSquareFoot)*parseFloat(document.getElementById('sqft').value)+parseFloat(costFromCracks));
         
         // You can now submit via AJAX or allow normal form submission
         // e.target.submit(); ← Uncomment if using real form action
