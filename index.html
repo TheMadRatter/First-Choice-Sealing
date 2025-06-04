@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+in<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -56,21 +56,22 @@
         <label for="dropdown">Dropdown *</label><br>
         <select id="dropdown">
           <option value="">Choose an option</option>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
+          <option value="option1">Brand New</option>
+          <option value="option2">Slightly Used</option>
+          <option value="option3">Cracked</option>
         </select>
         <div class="error" id="dropdown-error">Choose an option.</div>
       </div>
 
       <div>
         <label for="sqft">Square Footage *</label><br>
-        <input id="sqft" type="number" placeholder="Example: 1,000 sqft">
+        <input id="sqft" type="number" placeholder="Example: 1,000 for 1000 sqft">
         <div class="error" id="sqft-error">Enter a number.</div>
       </div>
 
       <div>
         <label for="cracks">Linear Feet for Cracks</label><br>
-        <input id="cracks" type="text" placeholder='100 ft of 1/8" cracks etc.'>
+        <input id="cracks" type="number" placeholder='100 ft of 1/8" cracks etc.'>
       </div>
 
       <div>
@@ -119,9 +120,23 @@
       });
 
       if (isValid) {
-        alert('Form is valid. Submitting...');
+        alert('Form is valid. Creating Quote.');
+
+        let costPerSquareFoot=0.15;
+        if(document.getElementById('dropdown').value==3){
+          costPerSquareFoot=0.35
+        }
+
+        let costFromCracks=document.getElementById('cracks').value*3;
+
+        alert('Estimated Quote: '+costPerSquareFoot*document.getElementById('sqft').value+costFromCracks);
+        
+        return costPerSquareFoot*document.getElementById('sqft').value+costFromCracks;
+        
         // You can now submit via AJAX or allow normal form submission
         // e.target.submit(); ← Uncomment if using real form action
+
+        
       }
     });
   </script>
